@@ -9,12 +9,13 @@ export default function Home({ dayInformation }) {
     dayInformation[dayInformation.length - 1].date
   );
 
-  const { days, seconds } = now.diff(latest, ["days", "seconds"]).toObject();
+  const { seconds } = now.diff(latest, ["seconds"]).toObject();
 
   const [secondsState, setSeconds] = useState(seconds);
 
-  const hoursSince = Math.floor(secondsState / 3600);
-  const minutesSince = Math.floor((secondsState % 3600) / 60);
+  const daysSince = Math.floor(secondsState / (3600 * 24));
+  const hoursSince = Math.floor((secondsState / 3600) % 24);
+  const minutesSince = Math.floor((secondsState / 60) % 60);
 
   const updateSeconds = () => {
     setSeconds((seconds) => seconds + 1);
@@ -40,12 +41,12 @@ export default function Home({ dayInformation }) {
             Days Since My Apartment Building Has Had A Fire Alarm
           </h1>
           <h2 className="mt-5 font-extrabold text-center text-transparent text-9xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
-            {Math.floor(days)}
+            {Math.floor(daysSince)}
           </h2>
           <h3 className="mt-5 text-xl text-center">
-            It has been {days} Days, {hoursSince} Hours, {minutesSince} Minutes,
-            and {Math.floor(secondsState % 60)} Seconds since there was a fire
-            alarm at my apartment building.
+            It has been {daysSince} Days, {hoursSince} Hours, {minutesSince}{" "}
+            Minutes, and {Math.floor(secondsState % 60)} Seconds since there was
+            a fire alarm at my apartment building.
           </h3>
         </div>
       </main>
