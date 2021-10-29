@@ -31,7 +31,7 @@ export default function Home({ dayInformation }) {
   return (
     <div className="flex flex-col min-h-screen text-white bg-soft-black">
       <Head>
-        <title>Days Since A Fire Alaram At MyApartments</title>
+        <title>Days Since A Fire Alarm At MyApartments</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
