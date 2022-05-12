@@ -9,6 +9,9 @@ export default function Home({ dayInformation }) {
     dayInformation[dayInformation.length - 1].date
   );
 
+  console.log('latest', latest)
+  console.log('now' , now)
+  console.log('diff' , now.diff(latest, ["seconds"]).toObject())
   const { seconds } = now.diff(latest, ["seconds"]).toObject();
 
   const [secondsState, setSeconds] = useState(seconds);
@@ -38,15 +41,14 @@ export default function Home({ dayInformation }) {
       <main className="flex flex-col flex-grow">
         <div className="flex flex-col justify-center flex-1 align-center">
           <h1 className="text-6xl font-bold text-center lg:mx-60">
-            Days Since My Apartment Building Has Had A Fire Alarm
+            Days Since My Apartment Building Has Had The Fire Alarm Go Off
           </h1>
           <h2 className="mt-5 font-extrabold text-center text-transparent text-9xl bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
             {Math.floor(daysSince)}
           </h2>
           <h3 className="mt-5 text-xl text-center">
             It has been {daysSince} Days, {hoursSince} Hours, {minutesSince}{" "}
-            Minutes, and {Math.floor(secondsState % 60)} Seconds since there was
-            a fire alarm at my apartment building.
+            Minutes, and {Math.floor(secondsState % 60)} Seconds since the fire alarm has gone off at my apartment building.
           </h3>
         </div>
       </main>
